@@ -14,6 +14,8 @@ import {
   Roboto_700Bold
 } from '@expo-google-fonts/roboto'
 
+import { theme } from '@/src/theme/theme'
+
 import { Loading } from '@/src/components/Loading'
 
 SplashScreen.preventAutoHideAsync()
@@ -24,6 +26,14 @@ export default function RootLayout() {
     Roboto_700Bold
   })
 
+  const themeProvider = {
+    ...DefaultTheme,
+    colors: {
+      ...DefaultTheme.colors,
+      background: theme.COLORS.STONE[50]
+    }
+  } as const
+
   useEffect(() => {
     if (fontsLoaded) {
       SplashScreen.hideAsync()
@@ -31,7 +41,7 @@ export default function RootLayout() {
   }, [fontsLoaded])
 
   return (
-    <ThemeProvider value={DefaultTheme}>
+    <ThemeProvider value={themeProvider}>
       <StatusBar style="dark" translucent />
 
       {fontsLoaded ? (
