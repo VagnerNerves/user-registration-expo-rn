@@ -31,7 +31,13 @@
     },
     "plugins": [
       "expo-router",
-      "expo-font"
+      "expo-font",
+      [
+        "expo-location",
+        {
+          "locationAlwaysAndWhenInUsePermission": "Permita que $(PRODUCT_NAME) use sua localização."
+        }
+      ]
     ],
     "experiments": {
       "typedRoutes": true
