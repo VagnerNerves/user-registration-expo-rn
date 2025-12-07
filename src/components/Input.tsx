@@ -19,13 +19,14 @@ import {
   unformatPhoneWithDDD
 } from '@/src/utils/phoneWithDDDFormatter'
 import { formatCEP, unformatCEP } from '@/src/utils/cepFormatter'
+import { onlyNumberText } from '@/src/utils/onlyNumberText'
 
 import { TextApp } from '@/src/components/TextApp'
 
 type InputProps = Readonly<{
   type?: 'text' | 'password'
   label?: string
-  mask?: 'phone' | 'cep'
+  mask?: 'phone' | 'cep' | 'onlyNumberText'
   errorMessage?: string | null
   styleViewContainer?: StyleProp<ViewStyle>
   inputProps?: TextInputProps
@@ -60,6 +61,10 @@ export function Input({
       case 'cep': {
         return formatCEP(text)
       }
+
+      case 'onlyNumberText': {
+        return onlyNumberText(text)
+      }
     }
 
     return text
@@ -77,6 +82,10 @@ export function Input({
 
       case 'cep': {
         return unformatCEP(text)
+      }
+
+      case 'onlyNumberText': {
+        return onlyNumberText(text)
       }
     }
 
@@ -113,7 +122,7 @@ export function Input({
           onChangeText={text => {
             const formatted = unformattedValue(text)
 
-            inputProps?.onChangeText && inputProps.onChangeText(formatted)
+            inputProps?.onChangeText?.(formatted)
             setValue(formatted)
           }}
         />
