@@ -4,14 +4,14 @@ import {
   type TouchableOpacityProps
 } from 'react-native'
 
-import { PlusIcon, EraserIcon } from 'phosphor-react-native'
+import { PlusIcon, EraserIcon, MapPinIcon } from 'phosphor-react-native'
 
 import { theme } from '@/src/theme/theme'
 
 import { Loading } from '@/src/components/Loading'
 import { TextApp } from '@/src/components/TextApp'
 
-type IconType = 'plus' | 'eraser'
+type IconType = 'plus' | 'eraser' | 'mapPin'
 
 type ButtonProps = Readonly<{
   text?: string
@@ -44,7 +44,8 @@ export function ButtonApp({
 
   const Icon = {
     plus: <PlusIcon weight="regular" size={16} color={textColor[type]} />,
-    eraser: <EraserIcon weight="regular" size={16} color={textColor[type]} />
+    eraser: <EraserIcon weight="regular" size={16} color={textColor[type]} />,
+    mapPin: <MapPinIcon weight="regular" size={16} color={textColor[type]} />
   } as const
 
   return (
