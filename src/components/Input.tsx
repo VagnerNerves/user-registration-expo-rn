@@ -14,11 +14,18 @@ import { EyeIcon, EyeSlashIcon, WarningCircleIcon } from 'phosphor-react-native'
 
 import { theme } from '@/src/theme/theme'
 
+import {
+  formatPhoneWithDDD,
+  unformatPhoneWithDDD
+} from '@/src/utils/phoneWithDDDFormatter'
+import { formatCEP, unformatCEP } from '@/src/utils/cepFormatter'
+
 import { TextApp } from '@/src/components/TextApp'
 
 type InputProps = Readonly<{
   type?: 'text' | 'password'
   label?: string
+  mask?: 'phone' | 'cep'
   errorMessage?: string | null
   styleViewContainer?: StyleProp<ViewStyle>
   inputProps?: TextInputProps
@@ -27,6 +34,7 @@ type InputProps = Readonly<{
 export function Input({
   type = 'text',
   label,
+  mask,
   errorMessage = null,
   styleViewContainer,
   inputProps
@@ -38,6 +46,42 @@ export function Input({
   const [value, setValue] = useState<string | undefined>()
 
   const invalid = !!errorMessage
+
+  function formattedValue(text: string | undefined) {
+    if (!text) {
+      return ''
+    }
+
+    switch (mask) {
+      case 'phone': {
+        return formatPhoneWithDDD(text)
+      }
+
+      case 'cep': {
+        return formatCEP(text)
+      }
+    }
+
+    return text
+  }
+
+  function unformattedValue(text: string | undefined) {
+    if (!text) {
+      return ''
+    }
+
+    switch (mask) {
+      case 'phone': {
+        return unformatPhoneWithDDD(text)
+      }
+
+      case 'cep': {
+        return unformatCEP(text)
+      }
+    }
+
+    return text
+  }
 
   return (
     <View style={[styles.container, styleViewContainer]}>
@@ -65,10 +109,12 @@ export function Input({
             },
             inputProps?.style
           ]}
-          value={inputProps?.value ? inputProps.value : value}
+          value={formattedValue(inputProps?.value ? inputProps.value : value)}
           onChangeText={text => {
-            inputProps?.onChangeText && inputProps.onChangeText(text)
-            setValue(text)
+            const formatted = unformattedValue(text)
+
+            inputProps?.onChangeText && inputProps.onChangeText(formatted)
+            setValue(formatted)
           }}
         />
 
