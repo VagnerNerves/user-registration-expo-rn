@@ -121,7 +121,7 @@ export function Input({
             },
             inputProps?.style
           ]}
-          value={formattedValue(inputProps?.value ? inputProps.value : value)}
+          value={formattedValue(inputProps ? inputProps.value : value)}
           onChangeText={text => {
             const formatted = unformattedValue(text)
 
