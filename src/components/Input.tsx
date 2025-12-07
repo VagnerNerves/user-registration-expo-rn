@@ -22,11 +22,13 @@ import { formatCEP, unformatCEP } from '@/src/utils/cepFormatter'
 import { onlyNumberText } from '@/src/utils/onlyNumberText'
 
 import { TextApp } from '@/src/components/TextApp'
+import { Loading } from './Loading'
 
 type InputProps = Readonly<{
   type?: 'text' | 'password'
   label?: string
   mask?: 'phone' | 'cep' | 'onlyNumberText'
+  loading?: boolean
   errorMessage?: string | null
   styleViewContainer?: StyleProp<ViewStyle>
   inputProps?: TextInputProps
@@ -36,6 +38,7 @@ export function Input({
   type = 'text',
   label,
   mask,
+  loading = false,
   errorMessage = null,
   styleViewContainer,
   inputProps
@@ -147,6 +150,8 @@ export function Input({
             )}
           </TouchableOpacity>
         )}
+
+        {loading && <Loading viewProps={{ style: styles.loading }} />}
       </View>
 
       {invalid && (
@@ -210,5 +215,6 @@ const styles = StyleSheet.create({
     flex: 1,
     fontSize: theme.FONTS.SIZE.SM,
     color: theme.COLORS.RED[500]
-  }
+  },
+  loading: { paddingRight: 16, paddingLeft: 8 }
 } as const)
