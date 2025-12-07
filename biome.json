@@ -40,5 +40,12 @@
         "noArrayIndexKey": "off"
       }
     }
+  },
+  "assist": {
+    "actions": {
+      "source": {
+        "organizeImports": "off"
+      }
+    }
   }
 }
