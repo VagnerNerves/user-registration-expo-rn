@@ -1,6 +1,7 @@
 import {
   View,
   ActivityIndicator,
+  StyleSheet,
   type ColorValue,
   type ViewProps
 } from 'react-native'
@@ -16,11 +17,16 @@ export function Loading({
   viewProps
 }: LoadingProps) {
   return (
-    <View
-      style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}
-      {...viewProps}
-    >
+    <View style={styles.container} {...viewProps}>
       <ActivityIndicator color={color} />
     </View>
   )
 }
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center'
+  }
+} as const)
