@@ -14,6 +14,8 @@ import {
   Roboto_700Bold
 } from '@expo-google-fonts/roboto'
 
+import { Loading } from '@/src/components/Loading'
+
 SplashScreen.preventAutoHideAsync()
 
 export default function RootLayout() {
@@ -32,7 +34,11 @@ export default function RootLayout() {
     <ThemeProvider value={DefaultTheme}>
       <StatusBar style="dark" translucent />
 
-      {fontsLoaded ? <Stack screenOptions={{ headerShown: false }} /> : null}
+      {fontsLoaded ? (
+        <Stack screenOptions={{ headerShown: false }} />
+      ) : (
+        <Loading />
+      )}
     </ThemeProvider>
   )
 }
