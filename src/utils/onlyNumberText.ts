@@ -1,3 +1,3 @@
 export function onlyNumberText(text: string) {
-  return text.replace(/\D/g, '')
+  return text ? text.replace(/\D/g, '') : ''
 }
