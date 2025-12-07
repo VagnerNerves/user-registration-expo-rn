@@ -1,15 +1,15 @@
-import "react-native-reanimated";
+import 'react-native-reanimated'
 
-import { useColorScheme } from "react-native";
+import { useColorScheme } from 'react-native'
 
-import { DefaultTheme, ThemeProvider } from "@react-navigation/native";
+import { DefaultTheme, ThemeProvider } from '@react-navigation/native'
 
-import { Stack } from "expo-router";
+import { Stack } from 'expo-router'
 
 // SplashScreen.preventAutoHideAsync();
 
 export default function RootLayout() {
-  const colorScheme = useColorScheme();
+  const colorScheme = useColorScheme()
 
   // const [loaded, error] = useFonts({
   //   SpaceMono: require("../assets/fonts/SpaceMono-Regular.ttf"),
@@ -35,5 +35,5 @@ export default function RootLayout() {
     <ThemeProvider value={DefaultTheme}>
       <Stack screenOptions={{ headerShown: false }} />
     </ThemeProvider>
-  );
+  )
 }
