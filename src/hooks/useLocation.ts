@@ -1,5 +1,7 @@
 import { useState } from 'react'
 
+import Toast from 'react-native-toast-message'
+
 import * as Location from 'expo-location'
 
 export function useLocation() {
@@ -12,7 +14,10 @@ export function useLocation() {
       const { status } = await Location.requestForegroundPermissionsAsync()
 
       if (status !== 'granted') {
-        console.log('Permissão para acessar localização negada.')
+        Toast.show({
+          type: 'info',
+          text1: 'Sem permissão para acessar a localização.'
+        })
         return null
       }
 
@@ -30,8 +35,6 @@ export function useLocation() {
         lng: longitude,
         address
       }
-    } catch (error) {
-      console.log(error)
     } finally {
       setLoadingLocation(false)
     }
