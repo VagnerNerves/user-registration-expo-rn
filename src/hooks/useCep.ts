@@ -27,8 +27,8 @@ export function useCep() {
       setErrorSearchCep(false)
       return data
     } catch (error) {
-      console.log(error)
       setErrorSearchCep(true)
+      throw error
     } finally {
       setLoadingSearchDataCep(false)
     }
