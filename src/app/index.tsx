@@ -477,6 +477,7 @@ export default function Index() {
                 style: { flex: 1 },
                 onPress: () => setIsOpenModalConfirmationClearForm(true)
               }}
+              isLoading={isOpenModalConfirmationClearForm}
             />
             <ButtonApp
               text="Cadastrar"
@@ -492,6 +493,7 @@ export default function Index() {
                   setIsOpenModalConfirmationRegisterUser(true)
                 })
               }}
+              isLoading={isOpenModalConfirmationRegisterUser}
             />
           </View>
         </View>
