@@ -14,6 +14,13 @@ import {
   Roboto_700Bold
 } from '@expo-google-fonts/roboto'
 
+import { GestureHandlerRootView } from 'react-native-gesture-handler'
+
+import { useSafeAreaInsets } from 'react-native-safe-area-context'
+
+import Toast from 'react-native-toast-message'
+import { toastConfig } from '@/src/config/toastConfig'
+
 import { theme } from '@/src/theme/theme'
 
 import { Loading } from '@/src/components/Loading'
@@ -25,6 +32,8 @@ export default function RootLayout() {
     Roboto_400Regular,
     Roboto_700Bold
   })
+
+  const insets = useSafeAreaInsets()
 
   const themeProvider = {
     ...DefaultTheme,
@@ -44,11 +53,15 @@ export default function RootLayout() {
     <ThemeProvider value={themeProvider}>
       <StatusBar style="dark" translucent />
 
-      {fontsLoaded ? (
-        <Stack screenOptions={{ headerShown: false }} />
-      ) : (
-        <Loading />
-      )}
+      <GestureHandlerRootView style={{ flex: 1 }}>
+        {fontsLoaded ? (
+          <Stack screenOptions={{ headerShown: false }} />
+        ) : (
+          <Loading />
+        )}
+
+        <Toast config={toastConfig} topOffset={insets.top + 10} />
+      </GestureHandlerRootView>
     </ThemeProvider>
   )
 }
