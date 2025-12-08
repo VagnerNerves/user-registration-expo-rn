@@ -71,7 +71,14 @@ const styles = StyleSheet.create({
     gap: 8,
     flexDirection: 'row',
     alignItems: 'center',
-    borderRadius: 4
+    borderRadius: 4,
+
+    shadowColor: '#000',
+    shadowOpacity: 0.7,
+    shadowRadius: 6,
+    shadowOffset: { width: 0, height: 3 },
+
+    elevation: 6
   },
   text: {
     fontFamily: theme.FONTS.ROBOTO_BOLD,
