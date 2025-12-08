@@ -101,7 +101,7 @@ export default function Index() {
 
     console.log('cadastrou', dataForm)
 
-    // reset()
+    reset()
 
     Toast.show({
       type: 'success',
